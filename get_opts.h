@@ -39,6 +39,7 @@ typedef int            opt_increment_t;
 typedef sl_elem *      opt_stringlist_t;
 typedef cl_elem *      opt_charlist_t;
 typedef il_elem *      opt_intlist_t;
+typedef void *         opt_ptr_t;
 
 
 typedef union _opt_value {
@@ -56,6 +57,7 @@ typedef union _opt_value {
 	opt_stringlist_t opt_stringlist;
 	opt_charlist_t   opt_charlist;
 	opt_intlist_t    opt_intlist;
+	opt_ptr_t        opt_ptr;
 } opt_value;
 
 typedef struct _opt {
@@ -82,6 +84,7 @@ typedef struct _opt {
 #define OPT_STRINGLIST 0x0B
 #define OPT_CHARLIST   0x0C
 #define OPT_INTLIST    0x0D
+#define OPT_PTR        0x0E
 
 
 #define I_END          0x00

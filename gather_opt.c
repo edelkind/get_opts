@@ -15,6 +15,7 @@
 		OPT_BOOL
 		OPT_CHAR
 		OPT_STRING
+		OPT_PTR
 		OPT_INT
 		OPT_LONG
 		OPT_SHORT
@@ -23,6 +24,11 @@
 		OPT_USHORT
 		OPT_TOGGLE
 		OPT_INCREMENT
+
+	alpha:
+		OPT_STRINGLIST
+		OPT_CHARLIST
+		OPT_INTLIST
 
 	notes:
 		OPT_BOOL: always turns to 1
@@ -59,35 +65,40 @@ int gather_opt (argvp, optpp)
 			OPT_ADVANCE(argvp);
 			optp->v_opt.opt_string = **argvp;
 			break;
+		case OPT_PTR:
+			OPT_ADVANCE(argvp);
+			optp->v_opt.opt_ptr =
+				(opt_ptr_t)strtol(**argvp, 0, 0);
+			break;
 		case OPT_INT:
 			OPT_ADVANCE(argvp);
 			optp->v_opt.opt_int =
-				(opt_int_t)strtol(**argvp, 0, 10);
+				(opt_int_t)strtol(**argvp, 0, 0);
 			break;
 		case OPT_LONG:
 			OPT_ADVANCE(argvp);
 			optp->v_opt.opt_long =
-				(opt_long_t)strtol(**argvp, 0, 10);
+				(opt_long_t)strtol(**argvp, 0, 0);
 			break;
 		case OPT_SHORT:
 			OPT_ADVANCE(argvp);
 			optp->v_opt.opt_short =
-				(opt_short_t)strtol(**argvp, 0, 10);
+				(opt_short_t)strtol(**argvp, 0, 0);
 			break;
 		case OPT_UINT:
 			OPT_ADVANCE(argvp);
 			optp->v_opt.opt_uint =
-				(opt_uint_t)strtoul(**argvp, 0, 10);
+				(opt_uint_t)strtoul(**argvp, 0, 0);
 			break;
 		case OPT_ULONG:
 			OPT_ADVANCE(argvp);
 			optp->v_opt.opt_ulong =
-				(opt_ulong_t)strtoul(**argvp, 0, 10);
+				(opt_ulong_t)strtoul(**argvp, 0, 0);
 			break;
 		case OPT_USHORT:
 			OPT_ADVANCE(argvp);
 			optp->v_opt.opt_ulong =
-				(opt_ushort_t)strtoul(**argvp, 0, 10);
+				(opt_ushort_t)strtoul(**argvp, 0, 0);
 			break;
 		case OPT_TOGGLE:
 			/* intolerant of user error */
@@ -119,7 +130,7 @@ int gather_opt (argvp, optpp)
 			ADD_ELEM(optpil, il);
 			OPT_ADVANCE(argvp);
 			optpil->il[optpil->n++] =
-				(opt_int_t)strtol(**argvp, 0, 10);
+				(opt_int_t)strtol(**argvp, 0, 0);
 			break;
 		default:
 			return -4;
