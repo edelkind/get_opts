@@ -1,0 +1,44 @@
+.TH get_opts 3
+.SH NAME
+get_opts, get_opts_errormatic - gather arguments, parsing them into
+structures for easier access and manipulation.
+.\"
+.SH SYNOPSIS
+.B #include <get_opts.h>
+
+\fBadd_opt\fR(\fIoptname\fR, \fIshort\fR, \fIlong\fR, \fIopt_type\fR,
+\fIdefault\fR, \fIfuncp\fR);
+.br
+ ...
+
+\fBput_opts\fR(\fIoptlist\fR, &\fIoptname\fR, ...);
+
+int \fBget_opts\fR(\fIargs\fR, \fIcarg\fR, \fIargv\fR, \fIargc\fR,
+\fIoptlist\fR);
+.br
+int \fBget_opts_errormatic\fR(\fIargs\fR, \fIargv\fR, \fIargc\fR,
+\fIoptlist\fR);
+
+char ***\fIargs\fR;
+.br
+char **\fIcarg\fR;
+.br
+char **\fIargv\fR;
+.br
+int \fIargc\fR;
+.br
+opt **\fIoptions\fR;
+
+opt \fIoptname\fR;
+.br
+opt **\fIoptlist\fR;
+.\"
+.SH LIBRARY
+get_opts Structural Option Parsing Library (-lget_opts)
+.\"
+.SH DESCRIPTION
+.B get_opts
+is intended as a library to parse options into structures.
+.\"
+.SH SEE ALSO
+
