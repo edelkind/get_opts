@@ -1,0 +1,34 @@
+
+### READY FOR COMPILING ###
+
+ready: READYBANNER compile.sh load.sh
+
+readyclean:
+	rm -f READYBANNER compile.sh load.sh makelib.sh
+
+reready: readyclean ready
+
+READYBANNER:
+	@echo "" >$@
+	@echo "### READYING FOR COMPILATION ###" >>$@
+	@echo "" >>$@
+	@cat $@
+
+compile.sh:
+	echo '#!/bin/sh' >$@
+	echo 'exec $(CC) -c $$1 $(CFLAGS)' >>$@
+	chmod 755 $@
+
+load.sh:
+	echo '#!/bin/sh' >$@
+	echo 'bin="$$1"; shift' >>$@
+	echo 'exec $(CC) -o "$$bin" $${1+"$$@"} $(LDFLAGS)' >>$@
+	chmod 755 $@
+
+makelib.sh:
+	echo '#!/bin/sh' >$@
+	echo 'lib="$$1"; shift' >>$@
+	echo '$(AR) "$$lib" $${1+"$$@"} $(LDFLAGS)' >>$@
+	echo 'exec $(RANLIB) "$$lib"' >>$@
+	chmod 755 $@
+

@@ -1,0 +1,6 @@
+BINBANNER:
+	@echo "" >$@
+	@echo "### COMPILING ###" >>$@
+	@echo "" >>$@
+	@cat $@
+

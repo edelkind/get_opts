@@ -1,0 +1,8 @@
+2001-12-27  Ari Edelkind  <edelkind-c@episec.com>
+
+* gather_opt.c (gather_opt):
+  added function execution ability
+  Now, when a function is passed to an option, it will be executed after
+  every instance for which the option is given on the command line.  The
+  opt structure is passed as an argument to the function.
+
