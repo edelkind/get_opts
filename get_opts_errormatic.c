@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 #include "get_opts.h"
 
 int get_opts_errormatic (args, argv, argc, options)
