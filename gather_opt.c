@@ -35,7 +35,8 @@
 #endif
 
 #define OPT_ADVANCE(argvp) { (*argvp)++; if (!**argvp) return -2; }
-#define ADD_ELEM(optpl, t) { if (optpl->t) realloc ((void *)optpl->t, \
+#define ADD_ELEM(optpl, t) { if (optpl->t) \
+			optpl->t = realloc ((void *)optpl->t, \
 				(optpl->n+1) * sizeof(optpl->t)); \
 					else optpl->t = malloc(sizeof(optpl->t)); }
 
