@@ -33,7 +33,7 @@ int get_opts (args, carg, argv, argc, options)
 {
 	int argsn = 0;
 
-	if (args) *args = malloc (argc * sizeof(char **));
+	if (args) *args = malloc ((argc + 1) * sizeof(char **));
 	if (!args) return -3;
 
 	for (; *argv; argv++) {
