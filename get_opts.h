@@ -97,6 +97,6 @@ extern opt o_end;
 
 /* special preprocessor functions */
 #define add_opt(name,s,l,t,v,f) opt name = {I_OPT,s,l,t,(opt_value)v,f}
-#define put_opts(optionlist,opts...) opt *optionlist[] = { ##opts , &o_end}
+#define put_opts(optionlist,opts...) opt *optionlist[] = { opts , &o_end}
 
 #endif /* !INC_GET_OPTS_H */
