@@ -20,7 +20,7 @@ int try_opt (argvp, options)
 	opt **options;
 {
 	char *arg = **argvp;
-	char *opts;
+	const char *opts;
 
 	opt **optp, *o;
 	opt_type_t opt_type;
