@@ -1,14 +1,6 @@
 #ifndef INC_GET_OPTS_H
 #define INC_GET_OPTS_H
 
-extern int   try_opt();
-extern int   get_opts();
-extern void  opt_free();
-extern void *new_list();
-extern char  opt_strcmp();
-extern int   gather_opt();
-extern int   get_opts_errormatic();
-
 typedef struct stringlist_elem {
 	char **sl;
 	unsigned int n;
@@ -43,15 +35,15 @@ typedef void *         opt_ptr_t;
 
 
 typedef union _opt_value {
-	opt_bool_t       opt_bool;
-	opt_char_t       opt_char;
-	opt_string_t     opt_string;
 	opt_int_t        opt_int;
 	opt_long_t       opt_long;
 	opt_short_t      opt_short;
 	opt_uint_t       opt_uint;
 	opt_ulong_t      opt_ulong;
 	opt_ushort_t     opt_ushort;
+	opt_bool_t       opt_bool;
+	opt_char_t       opt_char;
+	opt_string_t     opt_string;
 	opt_toggle_t     opt_toggle;
 	opt_increment_t  opt_increment;
 	opt_stringlist_t opt_stringlist;
@@ -61,13 +53,23 @@ typedef union _opt_value {
 } opt_value;
 
 typedef struct _opt {
-	opt_bool_t   i_opt; /* should be 1 for all real options */
-	opt_string_t s_opt;
-	opt_string_t l_opt;
-	opt_type_t   t_opt;
-	opt_value    v_opt;
-	int          (*f_opt)();
+	opt_bool_t  i_opt; /* should be 1 for all real options */
+	const char *s_opt;
+	const char *l_opt;
+	opt_type_t  t_opt;
+	opt_value   v_opt;
+	int         (*f_opt)();
 } opt;
+
+typedef struct _optx {
+	opt_bool_t  i_opt; /* should be 1 for all real options */
+	const char *s_opt;
+	const char *l_opt;
+	opt_type_t  t_opt;
+	opt_value  *v_opt;
+	int         (*f_opt)();
+        const char *help;
+} optx;
 
 
 #define OPT_BOOL       0x00
@@ -98,5 +100,13 @@ extern opt o_end;
 /* special preprocessor functions */
 #define add_opt(name,s,l,t,v,f) opt name = {I_OPT,s,l,t,(opt_value)v,f}
 #define put_opts(optionlist,opts...) opt *optionlist[] = { opts , &o_end}
+
+extern int   try_opt(char ***, opt **);
+extern int   get_opts(char ***, char **, char **, int, opt **);
+extern void  opt_free(char **);
+extern void *new_list(opt_type_t t_list);
+extern char  opt_strcmp(const char*, const char*);
+extern int   gather_opt(char ***, opt **);
+extern int   get_opts_errormatic(char ***, char **, int, opt **);
 
 #endif /* !INC_GET_OPTS_H */

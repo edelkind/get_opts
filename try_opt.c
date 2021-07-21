@@ -19,8 +19,8 @@ int try_opt (argvp, options)
 	char ***argvp;
 	opt **options;
 {
-	char *arg = **argvp;
-	char *opts;
+	const char *arg = **argvp;
+	const char *opts;
 
 	opt **optp, *o;
 	opt_type_t opt_type;
