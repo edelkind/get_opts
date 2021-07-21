@@ -1,0 +1,10 @@
+*.o
+*.a
+*BANNER
+compile.sh
+load.sh
+makelib.sh
+opt_example
+opt_example_em
+tags
+.*.sw?
